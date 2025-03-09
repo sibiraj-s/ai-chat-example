@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "oxlint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "prisma migrate dev",
+    "migrate:dev": "prisma migrate dev",
     "studio": "prisma studio",
     "prepare": "husky"
   },
