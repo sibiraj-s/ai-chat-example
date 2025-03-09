@@ -1,0 +1,36 @@
+{
+  "name": "ai-chat",
+  "description": "A demo for ai chat",
+  "private": true,
+  "keywords": [
+    "ai-chat",
+    "demo"
+  ],
+  "license": "MIT",
+  "author": "sibiraj-s",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "lint": "oxlint .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.1.15",
+    "@prisma/client": "^6.4.1",
+    "@topcli/prompts": "^2.2.0",
+    "ai": "^4.1.54"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "oxlint": "^0.15.13",
+    "prettier": "^3.5.3",
+    "prisma": "^6.4.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
