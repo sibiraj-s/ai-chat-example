@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+    branches: master
+
+env:
+  NODE_VERSION: 22
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: npm
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test
