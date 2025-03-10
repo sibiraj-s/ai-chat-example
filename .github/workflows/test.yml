@@ -7,8 +7,6 @@ on:
 
 env:
   NODE_VERSION: 22
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
 jobs:
   eval:
