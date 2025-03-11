@@ -1,3 +1,5 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import { Message, PrismaClient, Role } from '@prisma/client';
 import { anthropic } from '@ai-sdk/anthropic';
 import { CoreMessage, streamText, tool } from 'ai';
@@ -7,6 +9,8 @@ import { z } from 'zod';
 const db = new PrismaClient();
 await db.$connect();
 
+const rulesPath = path.join(import.meta.dirname, 'rules.txt');
+const rules = await fs.readFile(rulesPath, 'utf-8');
 const model = anthropic('claude-3-5-haiku-latest');
 
 // create a new conversation every time the script is run
@@ -64,12 +68,7 @@ const askAi = async (question: string) => {
     tools: {
       conversationId: conversationIdTool,
     },
-    system:
-      `You are a helpful assistant.` +
-      `You need to answer the question in a concise and to the point manner.` +
-      `You need to answer the question in a way that is easy to understand.` +
-      'You need to handle only text messages and return only text messages.' +
-      'You can use only the tools provided to you.',
+    system: rules,
   });
 
   let answer = '';
