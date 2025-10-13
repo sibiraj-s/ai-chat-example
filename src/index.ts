@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Message, PrismaClient, Role } from '@prisma/client';
 import { anthropic } from '@ai-sdk/anthropic';
-import { CoreMessage, streamText, tool } from 'ai';
+import { ModelMessage, stepCountIs, streamText, tool } from 'ai';
 import { question, required } from '@topcli/prompts';
 import { z } from 'zod';
 
@@ -19,22 +19,23 @@ console.log('Starting new conversation:', conversation.id);
 
 const conversationIdTool = tool({
   description: 'Get the id of the current conversation',
-  parameters: z.object({}),
+  inputSchema: z.object({}),
   execute: async () => {
+    await new Promise((resolve) => setTimeout(resolve, 100)); // simulate some delay,
     // in practical scenarios, this can be an async api call
     return conversation.id;
   },
 });
 
 // convert a prisma message to a core message
-const toCoreMessages = (messages: Message[]): CoreMessage[] => {
+const toModelMessages = (messages: Message[]): ModelMessage[] => {
   const coreMessages = messages.map((message) => {
     const coreMessage = {
       role: message.role,
       content: message.content,
     };
 
-    return coreMessage as CoreMessage;
+    return coreMessage as ModelMessage;
   });
 
   return coreMessages;
@@ -47,8 +48,8 @@ const askAi = async (question: string) => {
     },
   });
 
-  const previousMessages = toCoreMessages(messages);
-  const newMessage: CoreMessage = {
+  const previousMessages = toModelMessages(messages);
+  const newMessage: ModelMessage = {
     role: 'user',
     content: question,
   };
@@ -64,7 +65,7 @@ const askAi = async (question: string) => {
   const { textStream } = streamText({
     model,
     messages: [...previousMessages, newMessage],
-    maxSteps: 10,
+    stopWhen: stepCountIs(10),
     tools: {
       conversationId: conversationIdTool,
     },
