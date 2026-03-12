@@ -1,12 +1,17 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { Message, PrismaClient, Role } from '@prisma/client';
+import { Message, PrismaClient, Role } from '../prisma/generated/client';
 import { anthropic } from '@ai-sdk/anthropic';
 import { ModelMessage, stepCountIs, streamText, tool } from 'ai';
 import { question, required } from '@topcli/prompts';
 import { z } from 'zod';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
-const db = new PrismaClient();
+const adapter = new PrismaBetterSqlite3({
+  url: process.env.DATABASE_URL || 'file:./dev.db',
+});
+
+const db = new PrismaClient({ adapter });
 await db.$connect();
 
 const rulesPath = path.join(import.meta.dirname, 'rules.txt');

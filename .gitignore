@@ -360,3 +360,7 @@ $RECYCLE.BIN/
 # .pnp.*
 
 .state.json
+
+# others
+prisma/generated/
+*.db

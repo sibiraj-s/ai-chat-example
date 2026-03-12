@@ -2,7 +2,7 @@
 
 This is a simple AI-powered chat application that runs in the command line interface (CLI). It's built using Vercel's AI SDK and Anthropic's Claude models, providing an interactive conversational experience directly in the terminal.
 
-The conversations are stored in a local postgres database.
+The conversations are stored in a local sqlite database.
 
 ## Requirements
 

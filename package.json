@@ -9,8 +9,9 @@
   "license": "MIT",
   "author": "sibiraj-s",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "dev": "tsx src/index.ts",
     "lint": "oxlint .",
     "eval:dev": "evalite watch",
     "test": "evalite",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.58",
+    "@prisma/adapter-better-sqlite3": "^7.5.0",
     "@prisma/client": "^7.5.0",
     "@topcli/prompts": "^2.4.1",
     "ai": "^6.0.116",
