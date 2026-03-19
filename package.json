@@ -1,7 +1,7 @@
 {
   "name": "ai-chat",
-  "description": "A demo for ai chat",
   "private": true,
+  "description": "A demo for ai chat",
   "keywords": [
     "ai-chat",
     "demo"
@@ -32,12 +32,12 @@
     "autoevals": "^0.0.132",
     "evalite": "^0.19.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.3",
-    "oxlint": "^1.53.0",
-    "prettier": "^3.8.1",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
     "prisma": "^7.5.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   }
 }
