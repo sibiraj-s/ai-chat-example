@@ -13,8 +13,8 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "lint": "oxlint .",
-    "eval:dev": "evalite watch",
-    "test": "evalite",
+    "eval:dev": "vitest",
+    "test": "vitest run",
     "migrate:dev": "prisma migrate dev",
     "studio": "prisma studio",
     "prepare": "husky"
@@ -30,7 +30,6 @@
   "devDependencies": {
     "@types/node": "^26.6.4",
     "autoevals": "^0.3.0",
-    "evalite": "^0.19.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "oxfmt": "^0.71.0",
